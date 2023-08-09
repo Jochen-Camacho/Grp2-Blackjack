@@ -104,6 +104,7 @@ public class Player {
         setBet(betAmount);
     }
     
+    // Overloaded bet method to be used by tests
      public void bet(int betAmount) {
         setBet(betAmount);
     }
@@ -120,6 +121,7 @@ public class Player {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n" + getName() + ", it's your turn.\n");
         boolean isTurnComplete = false;
+        // While the turn is not complete display the player's hand and their options
         while (!isTurnComplete) {
             System.out.println("Your current hand: " + getHand().getCards());
             System.out.println("Hand value: " + getHand().calculateHandValue());
@@ -148,6 +150,7 @@ public class Player {
             }
     }
     
+    // Overloaded play method to be used by tests
     public String play(Deck deck, int option){
         if (deck == null){
             throw new IllegalArgumentException("Deck is Null!");

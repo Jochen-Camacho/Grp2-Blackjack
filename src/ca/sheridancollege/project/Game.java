@@ -52,11 +52,13 @@ public class Game {
         System.out.println("Welcome to BlackJack!\nLets PLAY!!\n");
         int numTurns = 0, numPlayers = 0, startingMoney = 0;
 
+        // Get the Number of Turns From the User
         while (numTurns < 1 || numTurns > 10) {
             try {
                 System.out.println("Enter the number of turns (1-10):");
                 numTurns = scanner.nextInt();
                 if (numTurns < 1 || numTurns > 10) {
+                    // Throw Error if incorrect input
                     throw new IllegalArgumentException("Invalid number of turns. Please enter a valid number.");
                 }
             } catch (InputMismatchException e) {
@@ -66,12 +68,14 @@ public class Game {
                 System.out.println(e.getMessage());
             }
         }
-        
+
+        // Get the Number of Players From the User
         while (numPlayers < 1 || numPlayers > 3) {
             try {
                 System.out.println("Enter the number of players (1-3):");
                 numPlayers = scanner.nextInt();
                 if (numPlayers < 1 || numPlayers > 3) {
+                    // Throw Error if incorrect input
                     throw new IllegalArgumentException("Invalid number of players. Please enter a valid number.");
                 }
             } catch (InputMismatchException e) {
@@ -82,6 +86,7 @@ public class Game {
             }
         }
 
+        // Get the Amount of Starting Money From the User
         while (startingMoney < 2 || startingMoney > 500) {
             try {
                 System.out.println("Enter the starting money for the Players (2-500 dollars):");
@@ -96,7 +101,8 @@ public class Game {
                 System.out.println(e.getMessage());
             }
         }
-        
+
+        // Creates a PlayList and load it with parameters provided by the user
         PlayerList players = new PlayerList();
         for (int i = 1; i <= numPlayers; i++) {
             System.out.println("Enter the name of player " + i + ":");
@@ -104,12 +110,13 @@ public class Game {
             players.addPlayer(new Player(playerName, startingMoney));
         }
 
+        // Call the startRound method for each turn given by the player
         for (int i = 0; i < numTurns; i++) {
             System.out.println("\n---- Turn " + (i + 1) + " ----");
             GameTurn gameTurn = new GameTurn(players);
             gameTurn.startRound();
         }
-        
+
         GameResult.displayResult(players);
     }
 
